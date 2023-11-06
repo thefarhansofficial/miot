@@ -1,0 +1,104 @@
+=============================================================================================
+IR sensor Interfacing with LCD to arduino   Note: the Pin Number are different 
+=============================================================================================
+
+#include<LiquidCrystal.h>
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+int IR_pin = 7;
+int PIR_pin = 6;
+int IR_state;
+int PIR_state;
+
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  IR_state = digitalRead(IR_pin);
+  if(IR_state == 0 || PIR_state == 1){
+    lcd.setCursor(0, 1);
+    lcd.print("ALERT!");
+    }
+  else {
+    lcd.setCursor(0, 1);
+    lcd.print("ALL OK");
+    }
+}
+
+=============================================================================================
+IR sensor Interfacing with arduino  
+=============================================================================================
+
+int IR_pin = 7;
+int IR_state;
+
+void setup() {
+ pinMode(IR_pin,INPUT);
+ Serial.begin(9600);
+}
+
+void loop() {
+  IR_state = digitalRead(IR_pin);
+  if(IR_state == 0){
+    Serial.println("ALERT!");
+    }
+  else {
+    Serial.println("ALL OK");
+    }
+    
+  delay(250);
+}
+
+=============================================================================================
+PIR sensor Interfacing with arduino  
+=============================================================================================
+
+
+int PIR_pin = 6;
+int PIR_state;
+
+void setup() {
+ pinMode(PIR_pin,INPUT);
+ Serial.begin(9600);
+}
+
+void loop() {
+  PIR_state = digitalRead(PIR_pin);
+  if(PIR_state == 0){
+    Serial.println("ALERT!");
+    }
+  else {
+    Serial.println("ALL OK");
+    }
+    
+  delay(250);
+}
+
+=============================================================================================
+Ultrasound sensor HC-SR04 Interfacing with arduino  
+=============================================================================================
+
+
+const int trigPin = 7;
+const int echoPin = 6;
+long duration;
+int distanceCm;
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distanceCm = duration * 0.034 / 2;
+  Serial.print("distanceCm = ");
+  Serial.println(distanceCm);
+  delay(250);
+}

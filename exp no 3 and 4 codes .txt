@@ -1,0 +1,135 @@
+================LED WITH SLIDER BUTTON=================================================== 
+
+int Button_state1;
+int Button_state2;
+int Button_state3;
+int Button_state4;
+int Button_state5;
+int Button_state6;
+int Button_state7;
+int Button_state8;
+
+int Button1 = A0;
+int Button2= A1;
+int Button3 = A2;
+int Button4 = A3;
+int Button5 = A4;
+int Button6 = A5;
+int Button7 = 1;
+int Button8 = 0;
+
+int LED_pin1 = 13;
+int LED_pin2= 12;
+int LED_pin3 = 11;
+int LED_pin4= 10;
+int LED_pin5 = 9;
+int LED_pin6= 8;
+int LED_pin7= 7;
+int LED_pin8= 6;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(13,OUTPUT);
+  pinMode(12,OUTPUT);
+pinMode(11,OUTPUT);
+pinMode(10,OUTPUT);
+pinMode(9,OUTPUT);
+pinMode(8,OUTPUT);
+pinMode(7,OUTPUT);
+pinMode(6,OUTPUT);
+pinMode(1,INPUT);
+pinMode(0,INPUT);
+}
+
+void loop() {
+  //put your main code here, to run repeatedly:
+  Button_state1 = digitalRead(A0);
+  digitalWrite(LED_pin1,Button_state1);
+  Button_state2 = digitalRead(A1);
+  digitalWrite(LED_pin2,Button_state2);
+  Button_state3 = digitalRead(A2);
+  digitalWrite(LED_pin3,Button_state3);
+  Button_state4 = digitalRead(A3);
+  digitalWrite(LED_pin4,Button_state4);
+  Button_state5 = digitalRead(A4);
+  digitalWrite(LED_pin5,Button_state5);
+  Button_state6 = digitalRead(A5);
+  digitalWrite(LED_pin6,Button_state6);
+  Button_state7 = digitalRead(1);
+  digitalWrite(LED_pin7,Button_state7);
+  Button_state8 = digitalRead(0);
+  digitalWrite(LED_pin8,Button_state8);
+
+}
+
+
+====================================================PIR SENSOR=========================================================
+
+int PIR_pin =6;
+int PIR_state;
+
+void setup(){
+  pinMode(PIR_pin,INPUT);
+  Serial.begin(9600);
+
+}
+void loop(){
+  PIR_state = digitalRead(PIR_pin);
+  if(PIR_state == 1){
+    Serial.println("ALERT!");
+  }
+  else{
+    Serial.println("ALL OK");
+  }
+  delay(250);
+}
+
+
+=============================================IR SENSOR===========================================================
+int IR_pin =7;
+int IR_state;
+
+void setup(){
+  pinMode(IR_pin,INPUT);
+  Serial.begin(9600);
+
+}
+void loop(){
+  IR_state = digitalRead(IR_pin);
+  if(IR_state == 1){
+    Serial.println("ALERT!");
+  }
+  else{
+    Serial.println("ALL OK");
+  }
+  delay(250);
+}
+
+===============================================ULTRASOUND===========================================================
+const int trigPin= 7;
+  const int echoPin = 6;
+  long duration;
+  int distanceCm;
+  
+void setup() {
+  // put your setup code here, to run once:
+ pinMode(trigPin, OUTPUT);
+ pinMode(echoPin, INPUT);
+ Serial.begin(9600);
+ }
+
+void loop() {
+  // put your main code here, to run repeatedly:
+   digitalWrite(trigPin, LOW);
+   delayMicroseconds(2);
+   digitalWrite(trigPin, HIGH);
+   delayMicroseconds(10);
+   digitalWrite(trigPin, LOW);
+   duration = pulseIn(echoPin, HIGH);
+   distanceCm = duration * 0.034 /2;
+   Serial.print("distanceCm=");
+   Serial.println(distanceCm);
+   delay(250);
+   
+}

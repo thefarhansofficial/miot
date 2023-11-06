@@ -1,0 +1,42 @@
+=======================================================================
+for Raspberry PI programming there may be a posiblity
+where some of the required library so run these comands
+raspi terminal >>
+=======================================================================
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo pip3 install --upgrade setuptools
+
+sudo pip3 install Adafruit_DHT
+
+pip3 install adafruit-io
+
+cd Desktop
+
+git clone https://github.com/sumeet019/MIOTcodes.git
+
+cd
+
+pip3 install --upgrade adafruit_blinka 
+
+=======================================================================
+
+run these commands in the terminal then u will see the code 
+files on the Raspberry Pi Desktop
+the folder contains all code for experiments (3 to 7)
+use Thonny to run the .py files
+
+
+
+
+
+
+
+
+
+
+
+
+
